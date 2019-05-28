@@ -1,0 +1,79 @@
+@import "mixins";
+
+@font-face {
+  font-family: 'Montserrat-Medium';
+  src: url('./assets/fonts/Montserrat-Medium/Montserrat-Medium.eot?v=4.7.0');
+  src: url('./assets/fonts/Montserrat-Medium/Montserrat-Medium.eot?#iefix&v=4.7.0') format('embedded-opentype'),
+  url('./assets/fonts/Montserrat-Medium/Montserrat-Medium.woff2?v=4.7.0') format('woff2'),
+  url('./assets/fonts/Montserrat-Medium/Montserrat-Medium.woff?v=4.7.0') format('woff'),
+  url('./assets/fonts/Montserrat-Medium/Montserrat-Medium.ttf?v=4.7.0') format('truetype'),
+  url('./assets/fonts/Montserrat-Medium/Montserrat-Medium.svg?v=4.7.0#fontawesomeregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat-Light';
+  src: url('./assets/fonts/Montserrat-Light/Montserrat-Light.eot?v=4.7.0');
+  src: url('./assets/fonts/Montserrat-Light/Montserrat-Light.eot?#iefix&v=4.7.0') format('embedded-opentype'),
+  url('./assets/fonts/Montserrat-Light/Montserrat-Light.woff2?v=4.7.0') format('woff2'),
+  url('./assets/fonts/Montserrat-Light/Montserrat-Light.woff?v=4.7.0') format('woff'),
+  url('./assets/fonts/Montserrat-Light/Montserrat-Light.ttf?v=4.7.0') format('truetype'),
+  url('./assets/fonts/Montserrat-Light/Montserrat-Light.svg?v=4.7.0#fontawesomeregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat-Bold';
+  src: url('./assets/fonts/Montserrat-Bold/Montserrat-Bold.eot?v=4.7.0');
+  src: url('./assets/fonts/Montserrat-Bold/Montserrat-Bold.eot?#iefix&v=4.7.0') format('embedded-opentype'),
+  url('./assets/fonts/Montserrat-Bold/Montserrat-Bold.woff2?v=4.7.0') format('woff2'),
+  url('./assets/fonts/Montserrat-Bold/Montserrat-Bold.woff?v=4.7.0') format('woff'),
+  url('./assets/fonts/Montserrat-Bold/Montserrat-Bold.ttf?v=4.7.0') format('truetype'),
+  url('./assets/fonts/Montserrat-Bold/Montserrat-Bold.svg?v=4.7.0#fontawesomeregular') format('svg');
+  font-weight: bold;
+  font-style: normal;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+*, *:before, *:after{
+  box-sizing: border-box;
+  text-rendering: optimizeLegibility !important;
+  box-shadow: none;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  appearance: none;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  cursor: auto;
+}
+
+
+body {
+  font-family: 'Montserrat-Medium',sans-serif;
+}
+
+.wrapper {
+  max-width: 1300px;
+  margin: auto;
+  padding:0 20px;
+  @include max(768px){
+    max-width: 650px;
+    padding: 0 10px;
+  }
+}
+
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 0;
+}
