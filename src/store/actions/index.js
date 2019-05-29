@@ -1,5 +1,5 @@
 export {
-    updateCurrencies,
     updateBTCValue,
-    updateSelectorOptions
+    updateSelectorOptions,
+    updateCurrenciesOnDisplay
 } from './currencies';

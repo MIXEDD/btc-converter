@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import './Currencies.scss';
 import Select from 'react-select'
-import axios from 'axios';
 import {connect} from 'react-redux';
 import * as actions from '../../../store/actions/index';
 
@@ -9,54 +8,44 @@ class Currencies extends Component{
 
     state = {
         available_currencies: [],
-        selected_currencies: [],
         selected_currency: null,
         buttonClass: 'disabled',
         formError: false
-    };
-
-    componentWillMount = async () => {
-        // gets all available currencies
-        const available_currencies = [];
-        const response = await axios.get('https://openexchangerates.org/api/currencies.json');
-        for(let key in response.data) {
-            available_currencies.push({
-                value: key, label: response.data[key]
-            });
-        }
-
-        this.setState({available_currencies})
     };
 
     // check if button should be enabled or disabled
     checkIfButtonShouldBeEnabled = (nextProps) => {
         if(nextProps.btc_val !== null &&  nextProps.btc_val !== "" && this.state.selected_currency) this.setState({buttonClass:null});
         else this.setState({buttonClass: 'disabled'});
+
     };
 
     componentWillReceiveProps(nextProps, nextContext) {
         this.checkIfButtonShouldBeEnabled(nextProps);
+        // remove form error on prop change
+        if(this.state.formError) this.setState({formError:false});
     }
 
+    // prevent user from adding duplicate currency entries
     checkIfCurrencyHasBeenAlreadyAdded = () => {
-          for(let i = 0; i < this.state.selected_currencies.length; i++) {
-              if(this.state.selected_currencies[i] === this.state.selected_currency) return  true
-          }
+         for(let i = 0; i < this.props.currenciesOnDisplay.length; i++)
+             if(this.props.currenciesOnDisplay[i] === this.state.selected_currency) return true;
 
-          return false;
+         return false;
     };
 
+    // add currency function
     addCurrency = (e) => {
-        e.preventDefault();
-        if(!this.checkIfCurrencyHasBeenAlreadyAdded()) {
-            const selected_currencies = [...this.state.selected_currencies];
-            selected_currencies.push(this.state.selected_currency);
-            this.setState({selected_currencies, buttonClass: 'disabled'}, () => {
-                this.props.updateCurrencies(this.state.selected_currencies);
-            });
-        } else this.setState({formError: true});
+       e.preventDefault();
+
+       if(!this.checkIfCurrencyHasBeenAlreadyAdded()) {
+           const currenciesOnDisplay = [...this.props.currenciesOnDisplay];
+           currenciesOnDisplay.push(this.state.selected_currency);
+           this.props.updateCurrenciesOnDisplay(currenciesOnDisplay);
+       } else this.setState({formError:true});
     };
 
+    // handles change selections from the dropdown menu
     handleChangeSelection = (selectedOption) => {
         if(this.props.btc_val !== null) {
             this.setState({
@@ -71,31 +60,30 @@ class Currencies extends Component{
 
         render() {
         return (
-            <React.Fragment>
-                <div className="currencies">
-                    <label>Select currencies:</label>
-                    <Select
-                        options={this.state.available_currencies}
-                        onChange={this.handleChangeSelection}
-                    />
-                </div>
+            <div className="block">
+                <label>Select currencies:</label>
+                <Select
+                    options={this.props.selector_options}
+                    onChange={this.handleChangeSelection}
+                />
                 <button id="add-currency" className={this.state.buttonClass} onClick={(e) => this.addCurrency(e)}>Add currency</button>
                 {this.state.formError ? <span className="error">Currency has been already added</span> : null}
-            </React.Fragment>
+            </div>
         );
     }
 }
 
 const mapStateToProps = state => {
     return {
-        selected_currencies: state.currencies,
-        btc_val: state.btcValue
+        btc_val: state.btcValue,
+        selector_options: state.selector_options,
+        currenciesOnDisplay: state.currenciesOnDisplay
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        updateCurrencies: (selected_currencies) => dispatch(actions.updateCurrencies(selected_currencies))
+        updateCurrenciesOnDisplay: (currenciesOnDisplay) => dispatch(actions.updateCurrenciesOnDisplay(currenciesOnDisplay))
     }
 };
 

@@ -12,30 +12,6 @@
   font-style: normal;
 }
 
-@font-face {
-  font-family: 'Montserrat-Light';
-  src: url('./assets/fonts/Montserrat-Light/Montserrat-Light.eot?v=4.7.0');
-  src: url('./assets/fonts/Montserrat-Light/Montserrat-Light.eot?#iefix&v=4.7.0') format('embedded-opentype'),
-  url('./assets/fonts/Montserrat-Light/Montserrat-Light.woff2?v=4.7.0') format('woff2'),
-  url('./assets/fonts/Montserrat-Light/Montserrat-Light.woff?v=4.7.0') format('woff'),
-  url('./assets/fonts/Montserrat-Light/Montserrat-Light.ttf?v=4.7.0') format('truetype'),
-  url('./assets/fonts/Montserrat-Light/Montserrat-Light.svg?v=4.7.0#fontawesomeregular') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Montserrat-Bold';
-  src: url('./assets/fonts/Montserrat-Bold/Montserrat-Bold.eot?v=4.7.0');
-  src: url('./assets/fonts/Montserrat-Bold/Montserrat-Bold.eot?#iefix&v=4.7.0') format('embedded-opentype'),
-  url('./assets/fonts/Montserrat-Bold/Montserrat-Bold.woff2?v=4.7.0') format('woff2'),
-  url('./assets/fonts/Montserrat-Bold/Montserrat-Bold.woff?v=4.7.0') format('woff'),
-  url('./assets/fonts/Montserrat-Bold/Montserrat-Bold.ttf?v=4.7.0') format('truetype'),
-  url('./assets/fonts/Montserrat-Bold/Montserrat-Bold.svg?v=4.7.0#fontawesomeregular') format('svg');
-  font-weight: bold;
-  font-style: normal;
-}
-
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
@@ -76,4 +52,33 @@ body {
   justify-content: center;
   align-items: center;
   padding: 100px 0;
+  @include max(768px) {
+    flex-direction: column;
+    padding: 50px 0;
+  }
+}
+
+
+button {
+  cursor: pointer;
+  font-family: 'Montserrat-Medium',sans-serif;
+  border: 1px solid #2d2d2d;
+  padding: 15px;
+  text-align: center;
+  width: 100%;
+  transition: all 0.2s;
+  margin-bottom: 10px;
+  &:hover {
+    border: 1px solid transparent;
+    background-color: #2d2d2d;
+    color: white;
+  }
+}
+
+.block {
+  margin-bottom: 10px;
+}
+
+.css-2b097c-container {
+  margin-bottom: 10px;
 }
