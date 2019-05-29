@@ -1,0 +1,12 @@
+@import "../../mixins";
+
+.currencies-list {
+  width: 100%;
+  max-width: 300px;
+  margin-left: 50px;
+  @include max(768px) {
+    margin-left: 0;
+  }
+}
+
+

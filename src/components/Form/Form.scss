@@ -1,0 +1,11 @@
+@import "../../mixins";
+
+form {
+  margin-right: 50px;
+  width: 100%;
+  max-width: 300px;
+  @include max(768px) {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+}

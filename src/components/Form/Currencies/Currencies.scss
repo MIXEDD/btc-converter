@@ -1,0 +1,13 @@
+button.disabled {
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+span {
+  &.error {
+    display: block;
+    font-size: 12px;
+    color: red;
+    text-align: right;
+  }
+}
